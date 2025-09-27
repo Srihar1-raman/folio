@@ -6,11 +6,23 @@
       "use": "@vercel/static"
     },
     {
+      "src": "about.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "etc.html",
+      "use": "@vercel/static"
+    },
+    {
       "src": "styles.css",
       "use": "@vercel/static"
     },
     {
       "src": "script.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "public/**",
       "use": "@vercel/static"
     }
   ],
@@ -22,6 +34,18 @@
     {
       "src": "/script.js",
       "dest": "/script.js"
+    },
+    {
+      "src": "/about.html",
+      "dest": "/about.html"
+    },
+    {
+      "src": "/etc.html",
+      "dest": "/etc.html"
+    },
+    {
+      "src": "/public/(.*)",
+      "dest": "/public/$1"
     },
     {
       "src": "/(.*)",
