@@ -802,13 +802,13 @@ header {
     background-color: #000000;
     z-index: 50;
     overflow-y: auto;
-    padding-top: 100px; /* Account for header */
+    padding-top: 180px; /* Account for header + gallery header */
     box-sizing: border-box;
 }
 
 .gallery-header {
     position: fixed;
-    top: 0;
+    top: 100px;
     left: 0;
     right: 0;
     background-color: #000000;
