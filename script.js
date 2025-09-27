@@ -3,6 +3,9 @@
 // Track currently active project
 let currentActiveProject = 'qurse';
 
+// Track currently active section
+let currentActiveSection = 'work';
+
 // Project data
 const projectsData = {
     qurse: {
@@ -40,54 +43,58 @@ const projectsData = {
         subtitle: "Data Visualization Platform",
         description: "Developed a comprehensive data visualization dashboard using Google Cloud Platform providing actionable insights about Uber ride patterns, pricing trends, and geographic demand distribution.",
         techStack: ["Google Cloud Platform", "BigQuery", "Data Studio", "Python", "Pandas", "Plotly"],
-        image: "public/placeholder.png",
-        demoLink: "#",
-        sourceLink: "https://github.com/Srihar1-raman"
+        image: "public/uber.png",
+        mobileImage: "public/uber_mob.png",
+        demoLink: "https://lookerstudio.google.com/u/1/reporting/0680b350-5367-4a50-84e6-5f1319a0a1ed/page/ze7hD",
+        sourceLink: "#"
     },
     pdfReader: {
-        title: "LLM Chatbot PDF Reader",
-        subtitle: "Document Intelligence Tool",
-        description: "Implemented a real-time chat interface where users can interact with PDF documents. Features natural language querying, context-aware responses, and document summarization capabilities.",
-        techStack: ["React", "Node.js", "OpenAI API", "PDF.js", "Socket.io", "MongoDB"],
-        image: "public/placeholder.png",
+        title: "FLight Tracker",
+        subtitle: "Live flight tracking monitor",
+        description: "Built a live flight tracking monitor using Opensky Network API. Displays real-time flight information, including call sign, altitude, and current location using the live ADS-B data.",
+        techStack: ["Python", "OpenSky Network API", "Pandas", "NumPy", "Bokeh"],
+        image: "public/flight.png",
+        mobileImage: "public/flight_mob.png",
         demoLink: "#",
-        sourceLink: "https://github.com/Srihar1-raman"
+        sourceLink: "https://github.com/Srihar1-raman/flight_tracker"
     },
     localAI: {
-        title: "Local AI Chat Interfaces",
-        subtitle: "Privacy-First Architecture",
-        description: "Research paper exploring private & portable architectures for personal AI assistance. Examines the intersection of local LLMs, privacy concerns, and cross-platform deployment strategies.",
-        techStack: ["Research", "Academic Writing", "Literature Review", "Technical Analysis"],
-        image: "public/placeholder.png",
+        title: "Local AI Chat Interfaces:",
+        subtitle: "A Privacy-First Architecture for Personal AI Assistance",
+        description: "Research paper exploring private & portable architectures for personal AI assistance. Examines the intersection of local LLMs, privacy concerns, and accessible deployment strategies. \n\n Yet to be published.",
+        techStack: ["Research"],
+        image: "public/local.png",
+        mobileImage: "public/local_mob.png",
         demoLink: "#",
-        sourceLink: "https://github.com/Srihar1-raman"
+        sourceLink: "#"
     },
     lstmStock: {
         title: "Stock Price Prediction",
-        subtitle: "LSTM Time Series Analysis",
-        description: "Research paper implementing Long Short-Term Memory networks for stock price prediction. Analyzes financial time series data and evaluates predictive performance across different market conditions.",
-        techStack: ["Python", "TensorFlow", "LSTM", "Pandas", "NumPy", "Matplotlib"],
-        image: "public/placeholder.png",
+        subtitle: "Long Short-Term Memory (LSTM)",
+        description: "Research paper implementing Long Short-Term Memory networks for stock price prediction. Analyzes financial time series data and evaluates predictive performance across different market conditions. \n\n Yet to be published.",
+        techStack: ["Research"],
+        image: "public/lstm.png",
+        mobileImage: "public/lstm_mob.png",
         demoLink: "#",
-        sourceLink: "https://github.com/Srihar1-raman"
+        sourceLink: "#"
     },
     deskvr: {
         title: "DeskVR",
         subtitle: "Cross-Device VR Platform",
         description: "Hackathon project securing top 10 placement out of 500 teams. PC-to-phone VR platform enabling seamless cross-device streaming and immersive virtual reality experiences.",
-        techStack: ["Unity", "C#", "WebRTC", "Android", "VR/AR", "Networking"],
+        techStack: ["WebXR", "Three.js", "React", "Socket"],
         image: "public/placeholder.png",
         demoLink: "#",
-        sourceLink: "https://github.com/Srihar1-raman"
+        sourceLink: "#"
     },
     navonmesh: {
         title: "Navonmesh",
         subtitle: "Technical Magazine",
         description: "Conceptualized, built, and designed Navonmesh, the annual technical magazine for the Computer Science Department. Features cutting-edge technology articles, student research, and industry insights.",
-        techStack: ["Adobe Creative Suite", "InDesign", "Photoshop", "Content Strategy", "Editorial Design"],
+        techStack: ["Adobe Creative Suite", "Express", "Wikimedia"],
         image: "public/placeholder.png",
         demoLink: "#",
-        sourceLink: "https://github.com/Srihar1-raman"
+        sourceLink: "#"
     }
 };
 
@@ -118,18 +125,27 @@ function updateProjectDetails(projectKey) {
         
         // Check if this is DeskVR project to use video instead of image
         const isDeskVR = projectKey === 'deskvr';
+        // Check if this is Navonmesh project to use PDF iframe instead of image
+        const isNavonmesh = projectKey === 'navonmesh';
         
         projectDetails.innerHTML = `
-            <div class="project-image">
-                <a href="${project.demoLink}" target="_blank" rel="noopener noreferrer">
-                    ${isDeskVR ? 
-                        `<video src="public/deskVR.mp4" class="project-screenshot" autoplay muted loop playsinline>
-                            Your browser does not support the video tag.
-                        </video>` :
-                        `<img src="${imageSrc}" alt="${project.title} - ${project.subtitle}" class="project-screenshot">`
-                    }
-                </a>
-            </div>
+            ${isNavonmesh ? 
+                `<div class="project-pdf">
+                    <iframe src="public/Navonmesh.pdf#toolbar=1&navpanes=1&scrollbar=1" type="application/pdf" frameborder="0">
+                        Your browser does not support PDFs.
+                    </iframe>
+                </div>` :
+                `<div class="project-image">
+                    <a href="${project.demoLink}" target="_blank" rel="noopener noreferrer">
+                        ${isDeskVR ? 
+                            `<video src="public/deskVR.mp4" class="project-screenshot" autoplay muted loop playsinline>
+                                Your browser does not support the video tag.
+                            </video>` :
+                            `<img src="${imageSrc}" alt="${project.title} - ${project.subtitle}" class="project-screenshot">`
+                        }
+                    </a>
+                </div>`
+            }
             <div class="project-info">
                 <h3 class="project-title active">${project.title}</h3>
                 <p class="project-subtitle">${project.subtitle}</p>
@@ -142,10 +158,10 @@ function updateProjectDetails(projectKey) {
                         ${project.techStack.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
                     </div>
                 </div>
-                <div class="project-links">
-                    <a href="${project.demoLink}" class="project-link">View Demo</a>
-                    <a href="${project.sourceLink}" target="_blank" class="project-link">Source Code</a>
-                </div>
+                        <div class="project-links">
+                            ${project.demoLink !== '#' ? `<a href="${project.demoLink}" class="project-link">View Demo</a>` : ''}
+                            ${project.sourceLink !== '#' ? `<a href="${project.sourceLink}" target="_blank" class="project-link">Source Code</a>` : ''}
+                        </div>
             </div>
         `;
     }
@@ -172,7 +188,7 @@ function updateMobileProjectDetails(projectKey) {
         'Private & Portable architecture for local LLMs': 'privateArch',
         'Twitter Personality Analyser': 'twitterAnalyzer',
         'Interactive Uber Data Dashboard': 'uberDashboard',
-        'LLM Chatbot Pdf Reader': 'pdfReader',
+        'FLight Tracker': 'pdfReader',
         'Local AI Chat Interfaces: A Privacy-First Architecture for Personal AI Assistance': 'localAI',
         'Stock Price Prediction Using Long Short-Term Memory (LSTM)': 'lstmStock',
         'DeskVR - Hackathon Project': 'deskvr',
@@ -198,18 +214,27 @@ function updateMobileProjectDetails(projectKey) {
             
             // Check if this is DeskVR project to use video instead of image
             const isDeskVR = projectKey === 'deskvr';
+            // Check if this is Navonmesh project to use PDF iframe instead of image
+            const isNavonmesh = projectKey === 'navonmesh';
             
             detailsDiv.innerHTML = `
-                <div class="work-item-image">
-                    <a href="${project.demoLink}" target="_blank" rel="noopener noreferrer">
-                        ${isDeskVR ? 
-                            `<video src="public/deskVR.mp4" autoplay muted loop playsinline>
-                                Your browser does not support the video tag.
-                            </video>` :
-                            `<img src="${workImageSrc}" alt="${project.title} - ${project.subtitle}">`
-                        }
-                    </a>
-                </div>
+                ${isNavonmesh ? 
+                    `<div class="work-item-pdf">
+                        <iframe src="public/Navonmesh.pdf#toolbar=1&navpanes=1&scrollbar=1" type="application/pdf" frameborder="0">
+                            Your browser does not support PDFs.
+                        </iframe>
+                    </div>` :
+                    `<div class="work-item-image">
+                        <a href="${project.demoLink}" target="_blank" rel="noopener noreferrer">
+                            ${isDeskVR ? 
+                                `<video src="public/deskVR.mp4" autoplay muted loop playsinline>
+                                    Your browser does not support the video tag.
+                                </video>` :
+                                `<img src="${workImageSrc}" alt="${project.title} - ${project.subtitle}">`
+                            }
+                        </a>
+                    </div>`
+                }
                 <div class="work-item-info">
                     <h4>${project.title}</h4>
                     <p>${project.subtitle}</p>
@@ -221,8 +246,8 @@ function updateMobileProjectDetails(projectKey) {
                         </div>
                     </div>
                     <div class="work-item-links">
-                        <a href="${project.demoLink}" class="work-item-link">View Demo</a>
-                        <a href="${project.sourceLink}" target="_blank" class="work-item-link">Source Code</a>
+                        ${project.demoLink !== '#' ? `<a href="${project.demoLink}" class="work-item-link">View Demo</a>` : ''}
+                        ${project.sourceLink !== '#' ? `<a href="${project.sourceLink}" target="_blank" class="work-item-link">Source Code</a>` : ''}
                     </div>
                 </div>
             `;
@@ -247,7 +272,7 @@ function handleWorkItemClick(event) {
         'Private & Portable architecture for local LLMs': 'privateArch',
         'Twitter Personality Analyser': 'twitterAnalyzer',
         'Interactive Uber Data Dashboard': 'uberDashboard',
-        'LLM Chatbot Pdf Reader': 'pdfReader',
+        'FLight Tracker': 'pdfReader',
         'Local AI Chat Interfaces: A Privacy-First Architecture for Personal AI Assistance': 'localAI',
         'Stock Price Prediction Using Long Short-Term Memory (LSTM)': 'lstmStock',
         'DeskVR - Hackathon Project': 'deskvr',
@@ -266,6 +291,248 @@ function handleWorkItemClick(event) {
     }
 }
 
+// Gallery functionality - Future-proof photo list
+// Supported formats: JPG, JPEG, PNG, GIF, WebP, BMP, TIFF, TIF, HEIC, HEIF, AVIF, SVG
+const galleryPhotos = [
+    '1.JPG',
+    '747.JPG',
+    '777.JPG',
+    'anand restaurant.JPG',
+    'art school .gif',
+    'aut.jpg',
+    'auto 2.gif',
+    'auto.gif',
+    'bandra.JPG',
+    'bangalore rain.jpg',
+    'benne dosa.jpeg',
+    'bird is a word.GIF',
+    'blr 2025.jpg',
+    'blr.gif',
+    'blr.jpeg',
+    'churchstreet.gif',
+    'connaught place.gif',
+    'd-aalr.jpeg',
+    'dadar .jpg',
+    'dag.gif',
+    'del-ccj.jpg',
+    'delhi 2024.jpg',
+    'delhi 25.JPEG',
+    'delhi 6.jpg',
+    'dory.jpeg',
+    'earphones.JPG',
+    'film.JPG',
+    'fun.JPG',
+    'hill road.jpeg',
+    'jaipur sunset.JPG',
+    'jaipur.JPG',
+    'jalori.jpg',
+    'janpat.JPG',
+    'jibhi.jpg',
+    'kashi.JPG',
+    'kerala sundown.jpg',
+    'kerala.jpg',
+    'kitchen.jpeg',
+    'landour sunset.JPG',
+    'leaf.gif',
+    'lifafa.jpeg',
+    'lunar eclipse.gif',
+    'malai temple delhi.GIF',
+    'mcleodganj.jpeg',
+    'metro.gif',
+    'minto bridge.JPG',
+    'minto road.jpg',
+    'mumbai 2023.jpg',
+    'mumbai central area.JPG',
+    'mussoorie.jpg',
+    'night.jpg',
+    'old delhi.jpg',
+    'qurse.jpg',
+    'ride after qaab show.jpeg',
+    'sabz burj.JPG',
+    'safdarjang.gif',
+    'saket alley.jpg',
+    'saket.JPEG',
+    'september 2025.JPG',
+    'shoja moon light.jpg',
+    'shoja.JPEG',
+    'south mumabi.jpg',
+    'sun2.GIF',
+    'taj.JPG',
+    'tree web.jpeg',
+    'varanasi.JPG',
+    'varsova.JPG'
+];
+
+// Function to add new photos to the gallery (call this when you add new photos)
+function addPhotosToGallery(newPhotos) {
+    galleryPhotos.push(...newPhotos);
+}
+
+// Function to shuffle array (Fisher-Yates algorithm)
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+// Function to load gallery photos dynamically
+function loadGalleryPhotos() {
+    const galleryGrid = document.getElementById('gallery-grid');
+    if (!galleryGrid) return;
+
+    galleryGrid.innerHTML = '';
+
+    // Randomize the order of photos on each load
+    const randomizedPhotos = shuffleArray(galleryPhotos);
+
+    randomizedPhotos.forEach((photo, index) => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item loading';
+        galleryItem.setAttribute('data-index', index);
+
+        // Support all major image formats
+        const imageExtensions = /\.(jpg|jpeg|png|gif|webp|bmp|tiff|tif|heic|heif|avif|svg)$/i;
+        const isImage = imageExtensions.test(photo);
+        
+        const mediaElement = document.createElement('img');
+        mediaElement.src = `public/etc/${photo}`;
+        mediaElement.alt = photo.replace(imageExtensions, '').replace(/[-_]/g, ' ');
+        mediaElement.loading = 'lazy';
+
+        mediaElement.onload = () => {
+            galleryItem.classList.remove('loading');
+        };
+
+        mediaElement.onerror = () => {
+            galleryItem.classList.remove('loading');
+            galleryItem.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #ffffff; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-align: center; padding: 1rem;">
+                    <div>Failed to load</div>
+                    <div style="font-size: 0.6rem; opacity: 0.7; margin-top: 0.5rem;">${photo}</div>
+                </div>
+            `;
+        };
+
+        galleryItem.appendChild(mediaElement);
+        // Store original index for modal lookup
+        const originalIndex = galleryPhotos.indexOf(photo);
+        galleryItem.addEventListener('click', () => openGalleryModal(originalIndex));
+        galleryGrid.appendChild(galleryItem);
+    });
+}
+
+// Function to open gallery modal
+function openGalleryModal(index) {
+    const modal = document.createElement('div');
+    modal.className = 'gallery-modal active';
+    modal.setAttribute('data-current-index', index);
+    
+    const photo = galleryPhotos[index];
+    const imageExtensions = /\.(jpg|jpeg|png|gif|webp|bmp|tiff|tif|heic|heif|avif|svg)$/i;
+    
+    modal.innerHTML = `
+        <div class="gallery-modal-content">
+            <span class="gallery-modal-close">&times;</span>
+            <img src="public/etc/${photo}" alt="${photo.replace(imageExtensions, '').replace(/[-_]/g, ' ')}">
+            <div class="gallery-modal-info">
+                ${photo.replace(imageExtensions, '').replace(/[-_]/g, ' ')}
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Function to update modal content
+    function updateModalContent(newIndex) {
+        const newPhoto = galleryPhotos[newIndex];
+        const modalContent = modal.querySelector('.gallery-modal-content');
+        const imageExtensions = /\.(jpg|jpeg|png|gif|webp|bmp|tiff|tif|heic|heif|avif|svg)$/i;
+        
+        modalContent.innerHTML = `
+            <span class="gallery-modal-close">&times;</span>
+            <img src="public/etc/${newPhoto}" alt="${newPhoto.replace(imageExtensions, '').replace(/[-_]/g, ' ')}">
+            <div class="gallery-modal-info">
+                ${newPhoto.replace(imageExtensions, '').replace(/[-_]/g, ' ')}
+            </div>
+        `;
+        
+        modal.setAttribute('data-current-index', newIndex);
+        
+        // Re-attach close button event
+        const closeBtn = modal.querySelector('.gallery-modal-close');
+        closeBtn.addEventListener('click', () => {
+            document.body.removeChild(modal);
+        });
+    }
+
+    // Close modal functionality
+    const closeBtn = modal.querySelector('.gallery-modal-close');
+    closeBtn.addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            document.body.removeChild(modal);
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function handleKeydown(e) {
+        if (e.key === 'Escape') {
+            document.body.removeChild(modal);
+            document.removeEventListener('keydown', handleKeydown);
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            const currentIndex = parseInt(modal.getAttribute('data-current-index'));
+            const prevIndex = currentIndex > 0 ? currentIndex - 1 : galleryPhotos.length - 1;
+            updateModalContent(prevIndex);
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            const currentIndex = parseInt(modal.getAttribute('data-current-index'));
+            const nextIndex = currentIndex < galleryPhotos.length - 1 ? currentIndex + 1 : 0;
+            updateModalContent(nextIndex);
+        }
+    });
+}
+
+// Function to show section
+function showSection(sectionName) {
+    // Hide all sections
+    document.getElementById('work-section').style.display = 'none';
+    document.getElementById('about-section').style.display = 'none';
+    
+    // Show selected section
+    document.getElementById(`${sectionName}-section`).style.display = 'block';
+    
+    // Update navigation active state
+    document.querySelectorAll('.nav a').forEach(link => {
+        link.classList.remove('active');
+    });
+    document.querySelector(`.nav a[href="#${sectionName}"]`).classList.add('active');
+    
+    // Update current section
+    currentActiveSection = sectionName;
+}
+
+// Function to handle navigation clicks
+function handleNavigationClick(event) {
+    const href = event.target.getAttribute('href');
+    
+    // If it's an external link (like etc.html), let it navigate normally
+    if (href.includes('.html') || href.includes('http')) {
+        return;
+    }
+    
+    // Otherwise, handle internal navigation
+    event.preventDefault();
+    const target = href.substring(1);
+    showSection(target);
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Add click listeners to work items
@@ -273,6 +540,11 @@ document.addEventListener('DOMContentLoaded', function() {
     workItems.forEach(item => {
         item.addEventListener('click', handleWorkItemClick);
         item.style.cursor = 'pointer';
+    });
+
+    // Add navigation click listeners
+    document.querySelectorAll('.nav a').forEach(link => {
+        link.addEventListener('click', handleNavigationClick);
     });
 
     // Auto-expand Qurse project on mobile
@@ -307,5 +579,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize with Qurse details
     updateProjectDetails('qurse');
 
-    console.log('Portfolio loaded with interactive project details');
+    // Set work as default active section
+    showSection('work');
+
+    // Auto-load gallery if we're on the ETC page
+    const isEtcPage = window.location.pathname.includes('etc.html') || 
+                     window.location.pathname.endsWith('/etc.html') ||
+                     window.location.href.includes('etc.html');
+    
+    if (isEtcPage) {
+        loadGalleryPhotos();
+    }
 });

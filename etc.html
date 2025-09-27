@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETC - Srihari Raman</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="name-section">
+            <h1 class="name">Srihari<span class="cursor">|</span></h1>
+        </div>
+        <nav class="nav">
+            <a href="index.html">WORK</a>
+            <a href="index.html#about">ABOUT</a>
+            <a href="etc.html" class="active">ETC</a>
+        </nav>
+    </header>
+
+    <!-- Full-screen gallery -->
+    <div class="fullscreen-gallery">
+        <div class="gallery-header">
+            <h2 class="gallery-title">[ETC]</h2>
+            <p class="gallery-subtitle">A collection of moments captured through my lens</p>
+        </div>
+        <div class="gallery-container">
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Photos will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Ensure gallery loads on ETC page
+        window.addEventListener('load', function() {
+            const galleryGrid = document.getElementById('gallery-grid');
+            if (galleryGrid && typeof loadGalleryPhotos === 'function') {
+                loadGalleryPhotos();
+            }
+        });
+    </script>
+</body>
+</html>
