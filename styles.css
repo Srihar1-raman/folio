@@ -802,31 +802,22 @@ header {
     background-color: #000000;
     z-index: 50;
     overflow-y: auto;
-    padding-top: 180px; /* Account for header + gallery header */
+    padding-top: 100px; /* Account for header */
     box-sizing: border-box;
 }
 
 .gallery-header {
-    position: fixed;
-    top: 100px;
-    left: 0;
-    right: 0;
-    background-color: #000000;
-    border-bottom: 1px solid #ffffff;
-    padding: 1.5rem 2rem;
-    z-index: 60;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 2rem 2rem 1rem 2rem;
+    text-align: left;
 }
 
 .gallery-title {
     color: #ffffff;
-    font-size: 3rem;
+    font-size: 1rem;
     margin: 0;
-    font-family: 'Reenie Beanie', cursive;
-    font-weight: normal;
-    letter-spacing: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    letter-spacing: 0.1em;
 }
 
 .gallery-subtitle {
