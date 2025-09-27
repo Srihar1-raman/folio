@@ -606,18 +606,20 @@ header {
     .work-item-details {
         display: none;
         margin-top: 1.5rem;
-        padding: 1.5rem;
+        padding: 0 1.5rem;
         background-color: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 4px;
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease-out, padding 0.3s ease-out, margin 0.3s ease-out;
+        transform-origin: top;
     }
 
     .work-item.expanded .work-item-details {
         display: block;
         max-height: 1000px;
+        padding: 1.5rem;
     }
 
     .work-item.expanded .work-description {
