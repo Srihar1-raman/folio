@@ -31,7 +31,7 @@ const projectsData = {
     twitterAnalyzer: {
         title: "Twitter Personality Analyser",
         subtitle: "AI-powered Social Analysis",
-        description: "Built a Twitter user personality analyser using Groq, Tavily web search, and Vercel for deployment deployment. Analyzes social media patterns and provides score on four different dimensions of personality traits and maps them on quadrant spectrum chart. \n\nOver 1500 site visitors and over 22000 views on twitter post.",
+        description: "Built a Twitter user personality analyser using Groq for inference, Tavily web search for sourcing. Analyzes social media patterns and provides score on four different dimensions of personality traits and maps them on quadrant spectrum chart. \n\nOver 1500 site visitors and over 22000 views on twitter post.",
         techStack: ["Next.js", "Groq", "Tavily", "Vercel", "React", "Shadcn", "AI SDK"],
         image: "public/twitter.png",
         mobileImage: "public/twitter_mob.png",
