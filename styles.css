@@ -802,7 +802,7 @@ header {
     background-color: #000000;
     z-index: 50;
     overflow-y: auto;
-    padding-top: 100px; /* Account for header */
+    padding-top: 85px; /* Account for header */
     box-sizing: border-box;
 }
 
@@ -1057,28 +1057,8 @@ header {
     background-color: #000000;
     z-index: 50;
     overflow-y: auto;
-    padding-top: 100px; /* Account for header */
+    padding-top: 85px; /* Account for header */
     box-sizing: border-box;
-}
-
-.about-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: #000000;
-    border-bottom: 1px solid #ffffff;
-    padding: 1.5rem 2rem;
-    z-index: 60;
-}
-
-.about-title {
-    color: #ffffff;
-    font-size: 3rem;
-    margin: 0;
-    font-family: 'Reenie Beanie', cursive;
-    font-weight: normal;
-    letter-spacing: 2px;
 }
 
 .about-content {
@@ -1089,7 +1069,7 @@ header {
     padding: 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    min-height: calc(100vh - 200px);
+    min-height: calc(100vh - 85px);
 }
 
 .about-photo {
@@ -1154,14 +1134,6 @@ header {
 
 /* Responsive About Page */
 @media (max-width: 768px) {
-    .about-header {
-        padding: 1rem;
-    }
-    
-    .about-title {
-        font-size: 2rem;
-    }
-    
     .about-content {
         flex-direction: column;
         gap: 2rem;
@@ -1185,14 +1157,6 @@ header {
 }
 
 @media (max-width: 480px) {
-    .about-header {
-        padding: 0.75rem;
-    }
-    
-    .about-title {
-        font-size: 1.5rem;
-    }
-    
     .about-content {
         padding: 1.5rem 0.75rem;
         gap: 1.5rem;
