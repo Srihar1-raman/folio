@@ -93,8 +93,10 @@ const projectsData = {
         description: "Conceptualized, built, and designed Navonmesh, the annual technical magazine for the Computer Science Department. Features cutting-edge technology articles, student research, and industry insights.",
         techStack: ["Adobe Creative Suite", "Express", "Wikimedia"],
         image: "public/placeholder.png",
-        demoLink: "#",
-        sourceLink: "#"
+        demoLink: "public/Navonmesh.pdf",
+        sourceLink: "#",
+        isCarousel: true,
+        carouselImages: Array.from({length: 24}, (_, i) => `public/Navonmesh-page-${String(i + 1).padStart(2, '0')}.png`)
     }
 };
 
@@ -125,15 +127,21 @@ function updateProjectDetails(projectKey) {
         
         // Check if this is DeskVR project to use video instead of image
         const isDeskVR = projectKey === 'deskvr';
-        // Check if this is Navonmesh project to use PDF iframe instead of image
-        const isNavonmesh = projectKey === 'navonmesh';
+        // Check if this is Navonmesh project to use carousel
+        const isCarousel = project.isCarousel;
         
         projectDetails.innerHTML = `
-            ${isNavonmesh ? 
-                `<div class="project-pdf">
-                    <iframe src="public/Navonmesh.pdf#toolbar=1&navpanes=1&scrollbar=1" type="application/pdf" frameborder="0">
-                        Your browser does not support PDFs.
-                    </iframe>
+            ${isCarousel ? 
+                `<div class="project-carousel">
+                    <div class="carousel-container">
+                        <img src="${project.carouselImages[0]}" alt="${project.title} - Page 1" class="carousel-image">
+                        <button class="carousel-btn carousel-prev" aria-label="Previous page">‹</button>
+                        <button class="carousel-btn carousel-next" aria-label="Next page">›</button>
+                        <div class="carousel-counter">1 / ${project.carouselImages.length}</div>
+                    </div>
+                    <div class="carousel-dots">
+                        ${project.carouselImages.map((_, i) => `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`).join('')}
+                    </div>
                 </div>` :
                 `<div class="project-image">
                     <a href="${project.demoLink}" target="_blank" rel="noopener noreferrer">
@@ -159,11 +167,16 @@ function updateProjectDetails(projectKey) {
                     </div>
                 </div>
                         <div class="project-links">
-                            ${project.demoLink !== '#' ? `<a href="${project.demoLink}" class="project-link">View Demo</a>` : ''}
+                            ${project.demoLink !== '#' ? `<a href="${project.demoLink}" class="project-link" target="_blank">View Demo</a>` : ''}
                             ${project.sourceLink !== '#' ? `<a href="${project.sourceLink}" target="_blank" class="project-link">Source Code</a>` : ''}
                         </div>
             </div>
         `;
+        
+        // Initialize carousel if this project has one
+        if (isCarousel) {
+            initializeCarousel(project.carouselImages);
+        }
     }
 }
 
@@ -581,6 +594,75 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set work as default active section
     showSection('work');
+    
+    // Carousel functionality
+    window.initializeCarousel = function(images) {
+        let currentIndex = 0;
+        const carouselImage = document.querySelector('.carousel-image');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+        const counter = document.querySelector('.carousel-counter');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const container = document.querySelector('.carousel-container');
+        
+        function updateCarousel(index) {
+            currentIndex = index;
+            carouselImage.style.opacity = '0';
+            
+            setTimeout(() => {
+                carouselImage.src = images[currentIndex];
+                carouselImage.alt = `Page ${currentIndex + 1}`;
+                counter.textContent = `${currentIndex + 1} / ${images.length}`;
+                
+                // Update dots
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+                
+                carouselImage.style.opacity = '1';
+            }, 150);
+        }
+        
+        function nextSlide() {
+            const newIndex = (currentIndex + 1) % images.length;
+            updateCarousel(newIndex);
+        }
+        
+        function prevSlide() {
+            const newIndex = (currentIndex - 1 + images.length) % images.length;
+            updateCarousel(newIndex);
+        }
+        
+        // Button click handlers
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+        
+        // Dot click handlers
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => updateCarousel(index));
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+        
+        // Click left/right halves of image
+        container.addEventListener('click', function(e) {
+            if (e.target === prevBtn || e.target === nextBtn) return;
+            
+            const rect = container.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const halfWidth = rect.width / 2;
+            
+            if (clickX < halfWidth) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
+        });
+    };
 
     // Auto-load gallery if we're on the ETC page
     const isEtcPage = window.location.pathname.includes('etc.html') || 
