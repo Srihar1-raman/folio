@@ -228,15 +228,21 @@ function updateMobileProjectDetails(projectKey) {
             
             // Check if this is DeskVR project to use video instead of image
             const isDeskVR = projectKey === 'deskvr';
-            // Check if this is Navonmesh project to use PDF iframe instead of image
-            const isNavonmesh = projectKey === 'navonmesh';
+            // Check if this is Navonmesh project to use carousel
+            const isCarousel = project.isCarousel;
             
             detailsDiv.innerHTML = `
-                ${isNavonmesh ? 
-                    `<div class="work-item-pdf">
-                        <iframe src="public/Navonmesh.pdf#toolbar=1&navpanes=1&scrollbar=1" type="application/pdf" frameborder="0">
-                            Your browser does not support PDFs.
-                        </iframe>
+                ${isCarousel ? 
+                    `<div class="project-carousel">
+                        <div class="carousel-container ${project.carouselType === 'book' ? 'book-spread' : ''}">
+                            <div class="carousel-images-wrapper">
+                                <img src="${project.carouselImages[0]}" alt="${project.title} - Page 1" class="carousel-image" data-page="0">
+                            </div>
+                            <button class="carousel-btn carousel-prev" aria-label="Previous page">‹</button>
+                            <button class="carousel-btn carousel-next" aria-label="Next page">›</button>
+                            <div class="carousel-counter">Page 1</div>
+                        </div>
+                        <div class="carousel-dots"></div>
                     </div>` :
                     `<div class="work-item-image">
                         <a href="${project.demoLink}" target="_blank" rel="noopener noreferrer">
@@ -266,6 +272,12 @@ function updateMobileProjectDetails(projectKey) {
                 </div>
             `;
             item.appendChild(detailsDiv);
+            
+            // Initialize carousel if this project has one
+            if (isCarousel) {
+                initializeCarousel(project.carouselImages);
+            }
+            
             break;
         }
     }
