@@ -1068,9 +1068,8 @@ header {
     justify-content: center;
     gap: 3rem;
     padding: 3rem 2rem;
-    max-width: 900px;
-    margin: 0 auto;
     min-height: calc(100vh - 85px);
+    width: 100%;
 }
 
 .about-photo {
