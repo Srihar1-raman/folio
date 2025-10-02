@@ -96,6 +96,7 @@ const projectsData = {
         demoLink: "public/Navonmesh.pdf",
         sourceLink: "#",
         isCarousel: true,
+        carouselType: 'book',
         carouselImages: Array.from({length: 24}, (_, i) => `public/Navonmesh-page-${String(i + 1).padStart(2, '0')}.png`)
     }
 };
@@ -133,15 +134,15 @@ function updateProjectDetails(projectKey) {
         projectDetails.innerHTML = `
             ${isCarousel ? 
                 `<div class="project-carousel">
-                    <div class="carousel-container">
-                        <img src="${project.carouselImages[0]}" alt="${project.title} - Page 1" class="carousel-image">
+                    <div class="carousel-container ${project.carouselType === 'book' ? 'book-spread' : ''}">
+                        <div class="carousel-images-wrapper">
+                            <img src="${project.carouselImages[0]}" alt="${project.title} - Page 1" class="carousel-image" data-page="0">
+                        </div>
                         <button class="carousel-btn carousel-prev" aria-label="Previous page">‹</button>
                         <button class="carousel-btn carousel-next" aria-label="Next page">›</button>
-                        <div class="carousel-counter">1 / ${project.carouselImages.length}</div>
+                        <div class="carousel-counter">Page 1</div>
                     </div>
-                    <div class="carousel-dots">
-                        ${project.carouselImages.map((_, i) => `<span class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`).join('')}
-                    </div>
+                    <div class="carousel-dots"></div>
                 </div>` :
                 `<div class="project-image">
                     <a href="${project.demoLink}" target="_blank" rel="noopener noreferrer">
@@ -597,56 +598,121 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Carousel functionality
     window.initializeCarousel = function(images) {
-        let currentIndex = 0;
-        const carouselImage = document.querySelector('.carousel-image');
+        const isBookSpread = document.querySelector('.book-spread');
+        const wrapper = document.querySelector('.carousel-images-wrapper');
         const prevBtn = document.querySelector('.carousel-prev');
         const nextBtn = document.querySelector('.carousel-next');
         const counter = document.querySelector('.carousel-counter');
-        const dots = document.querySelectorAll('.carousel-dot');
+        const dotsContainer = document.querySelector('.carousel-dots');
         const container = document.querySelector('.carousel-container');
         
-        function updateCarousel(index) {
-            currentIndex = index;
-            carouselImage.style.opacity = '0';
+        // For book spread: create spreads array
+        // [0] = page 1 (cover), [1] = pages 2-3, [2] = pages 4-5, ... [11] = page 24 (back)
+        let spreads = [];
+        let currentSpreadIndex = 0;
+        
+        if (isBookSpread) {
+            // First page alone (cover)
+            spreads.push([0]);
+            // Middle pages in pairs
+            for (let i = 1; i < images.length - 1; i += 2) {
+                if (i + 1 < images.length - 1) {
+                    spreads.push([i, i + 1]);
+                } else {
+                    spreads.push([i]);
+                }
+            }
+            // Last page alone (back cover)
+            spreads.push([images.length - 1]);
+            
+            // Create dots for each spread
+            spreads.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                dot.dataset.index = i;
+                dotsContainer.appendChild(dot);
+            });
+        } else {
+            // Regular carousel
+            images.forEach((_, i) => {
+                spreads.push([i]);
+                const dot = document.createElement('span');
+                dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                dot.dataset.index = i;
+                dotsContainer.appendChild(dot);
+            });
+        }
+        
+        const dots = document.querySelectorAll('.carousel-dot');
+        
+        function updateCarousel(spreadIndex) {
+            currentSpreadIndex = spreadIndex;
+            wrapper.style.opacity = '0';
             
             setTimeout(() => {
-                carouselImage.src = images[currentIndex];
-                carouselImage.alt = `Page ${currentIndex + 1}`;
-                counter.textContent = `${currentIndex + 1} / ${images.length}`;
+                const spread = spreads[currentSpreadIndex];
+                wrapper.innerHTML = '';
+                
+                if (spread.length === 1) {
+                    // Single page
+                    const img = document.createElement('img');
+                    img.src = images[spread[0]];
+                    img.alt = `Page ${spread[0] + 1}`;
+                    img.className = 'carousel-image single-page';
+                    wrapper.appendChild(img);
+                    counter.textContent = `Page ${spread[0] + 1}`;
+                } else {
+                    // Two pages (spread)
+                    spread.forEach((pageIndex, i) => {
+                        const img = document.createElement('img');
+                        img.src = images[pageIndex];
+                        img.alt = `Page ${pageIndex + 1}`;
+                        img.className = `carousel-image ${i === 0 ? 'left-page' : 'right-page'}`;
+                        wrapper.appendChild(img);
+                    });
+                    counter.textContent = `Pages ${spread[0] + 1}-${spread[1] + 1}`;
+                }
                 
                 // Update dots
                 dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentIndex);
+                    dot.classList.toggle('active', i === currentSpreadIndex);
                 });
                 
-                carouselImage.style.opacity = '1';
+                wrapper.style.opacity = '1';
             }, 150);
         }
         
         function nextSlide() {
-            const newIndex = (currentIndex + 1) % images.length;
+            const newIndex = (currentSpreadIndex + 1) % spreads.length;
             updateCarousel(newIndex);
         }
         
         function prevSlide() {
-            const newIndex = (currentIndex - 1 + images.length) % images.length;
+            const newIndex = (currentSpreadIndex - 1 + spreads.length) % spreads.length;
             updateCarousel(newIndex);
         }
         
         // Button click handlers
-        prevBtn.addEventListener('click', prevSlide);
-        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevSlide();
+        });
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextSlide();
+        });
         
         // Dot click handlers
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => updateCarousel(index));
+        dots.forEach((dot) => {
+            dot.addEventListener('click', () => updateCarousel(parseInt(dot.dataset.index)));
         });
         
         // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
+        const keyHandler = function(e) {
             if (e.key === 'ArrowLeft') prevSlide();
             if (e.key === 'ArrowRight') nextSlide();
-        });
+        };
+        document.addEventListener('keydown', keyHandler);
         
         // Click left/right halves of image
         container.addEventListener('click', function(e) {
