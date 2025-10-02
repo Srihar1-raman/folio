@@ -1063,11 +1063,12 @@ header {
 
 .about-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4rem;
-    padding: 4rem 2rem;
-    max-width: 1200px;
+    gap: 2.5rem;
+    padding: 3rem 2rem;
+    max-width: 800px;
     margin: 0 auto;
     min-height: calc(100vh - 85px);
 }
@@ -1078,12 +1079,12 @@ header {
 }
 
 .profile-photo {
-    width: 300px;
-    height: 300px;
+    width: 220px;
+    height: 220px;
     object-fit: cover;
     object-position: center;
     border: 1px solid #ffffff;
-    padding: 0.5rem;
+    padding: 0.4rem;
     background-color: #000000;
     transition: all 0.3s ease;
     position: relative;
@@ -1114,18 +1115,18 @@ header {
 }
 
 .about-text {
-    flex: 1;
-    max-width: 500px;
+    text-align: center;
+    max-width: 600px;
 }
 
 .about-text p {
     color: #ffffff;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     line-height: 1.6;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1.2rem 0;
     font-weight: 300;
     font-family: 'JetBrains Mono', monospace;
-    text-align: justify;
+    text-align: center;
 }
 
 .about-text p:last-child {
@@ -1135,15 +1136,13 @@ header {
 /* Responsive About Page */
 @media (max-width: 768px) {
     .about-content {
-        flex-direction: column;
         gap: 2rem;
         padding: 2rem 1rem;
-        text-align: center;
     }
     
     .profile-photo {
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
     }
     
     .about-text {
@@ -1151,8 +1150,7 @@ header {
     }
     
     .about-text p {
-        font-size: 1rem;
-        text-align: left;
+        font-size: 0.9rem;
     }
 }
 
@@ -1163,11 +1161,11 @@ header {
     }
     
     .profile-photo {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
     }
     
     .about-text p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 }
