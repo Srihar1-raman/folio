@@ -737,22 +737,22 @@ header {
     }
 
     .work-item-details {
-        display: none;
-        margin-top: 1.5rem;
-        padding: 0 1.5rem;
+        margin-top: 0;
+        padding: 0;
         background-color: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 4px;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease-out, padding 0.3s ease-out, margin 0.3s ease-out;
-        transform-origin: top;
+        opacity: 0;
+        transition: max-height 0.4s ease, padding 0.4s ease, margin 0.4s ease, opacity 0.4s ease;
     }
 
     .work-item.expanded .work-item-details {
-        display: block;
-        max-height: 1000px;
+        max-height: 2000px;
         padding: 1.5rem;
+        margin-top: 1.5rem;
+        opacity: 1;
     }
 
     .work-item.expanded .work-description {
