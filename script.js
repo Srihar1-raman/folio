@@ -93,7 +93,7 @@ const projectsData = {
         description: "Conceptualized, built, and designed Navonmesh, the annual technical magazine for the Computer Science Department. Features cutting-edge technology articles, student research, and industry insights.",
         techStack: ["Adobe Creative Suite", "Express", "Wikimedia"],
         image: "public/placeholder.png",
-        demoLink: "public/Navonmesh.pdf",
+        demoLink: "#",
         sourceLink: "#",
         isCarousel: true,
         carouselType: 'book',
