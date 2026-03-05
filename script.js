@@ -18,6 +18,16 @@ const projectsData = {
         demoLink: "https://qurse.site",
         sourceLink: "https://github.com/Srihar1-raman/qurseAI"
     },
+    qopy: {
+        title: "qopy",
+        subtitle: "GRAB TEXT FROM ANY SCREEN",
+        description: "One click and drag. That's it. qopy extracts text from images, videos, or any unselectable area on your Mac directly to your clipboard. Uses on-device machine learning to recognize text instantly. No loading spinners, no waiting.\n\n100% PRIVATE: Everything happens locally on your Mac. No images or text are ever sent to any server.\n\nNATIVE FEEL: Built specifically for macOS. Sits quietly in your menu bar until you need it.",
+        techStack: ["Xcode", "Swift"],
+        image: "public/qopy.jpg",
+        mobileImage: "public/qopy_mobile.jpg",
+        demoLink: "https://www.qopy.site",
+        sourceLink: "https://github.com/Srihar1-raman/qopy"
+    },
     privateArch: {
         title: "Private & Portable Architecture for Local LLMs",
         subtitle: "Privacy First Architecture",
@@ -199,6 +209,7 @@ function updateMobileProjectDetails(projectKey) {
     // Find the work item that matches this project
     const projectKeyMap = {
         'Qurse - AI powered Search Platform': 'qurse',
+        'qopy - Grab Text From Any Screen': 'qopy',
         'Private & Portable architecture for local LLMs': 'privateArch',
         'Twitter Personality Analyser': 'twitterAnalyzer',
         'Interactive Uber Data Dashboard': 'uberDashboard',
@@ -295,6 +306,7 @@ function handleWorkItemClick(event) {
     // Map work item titles to project keys
     const projectKeyMap = {
         'Qurse - AI powered Search Platform': 'qurse',
+        'qopy - Grab Text From Any Screen': 'qopy',
         'Private & Portable architecture for local LLMs': 'privateArch',
         'Twitter Personality Analyser': 'twitterAnalyzer',
         'Interactive Uber Data Dashboard': 'uberDashboard',
