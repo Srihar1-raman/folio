@@ -6,7 +6,7 @@
       "use": "@vercel/static"
     },
     {
-      "src": "about.html",
+      "src": "photos.html",
       "use": "@vercel/static"
     },
     {
@@ -36,12 +36,20 @@
       "dest": "/script.js"
     },
     {
-      "src": "/about.html",
-      "dest": "/about.html"
+      "src": "/photos.html",
+      "dest": "/photos.html"
+    },
+    {
+      "src": "/photos",
+      "dest": "/photos.html"
     },
     {
       "src": "/etc.html",
       "dest": "/etc.html"
+    },
+    {
+      "src": "/about.html",
+      "dest": "/index.html"
     },
     {
       "src": "/public/(.*)",
