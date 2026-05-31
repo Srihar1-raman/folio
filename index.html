@@ -3,159 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Srihari - Portfolio</title>
-    <!-- Favicon for all platforms -->
+    <title>Srihari Raman</title>
     <link rel="icon" type="image/x-icon" href="public/favicon_io/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="public/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="public/favicon_io/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="public/favicon_io/apple-touch-icon.png">
     <link rel="manifest" href="public/favicon_io/site.webmanifest">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Reenie+Beanie&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script defer src="https://va.vercel-scripts.com/v1/script.js"></script>
 </head>
 <body>
-    <header>
-        <div class="name-section">
-            <a href="index.html" class="name-link">
-                <h1 class="name">Srihari<span class="cursor">|</span></h1>
-            </a>
-        </div>
-        <nav class="nav">
-            <a href="#work" class="active">WORK</a>
-            <a href="about.html">ABOUT</a>
-            <a href="etc.html">ETC</a>
-        </nav>
-    </header>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="index.html" class="nav-active">home</a>
+                <a href="photos.html">photos</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle">dark</button>
+        </header>
 
-    <div class="main-content">
-        <div class="horizontal-line"></div>
-        <div class="content-grid">
-            <div class="left-section">
-                <div class="bio-section">
-                    <p class="bio-text">
-                        AGENTIC fullstack engineer learning about AI Agents, LLMs, AI tool suite, and their interactions in everyday tech
-                    </p>
-                    <p class="education">
-                        Currently studying <em>Artificial Intelligence & Data Science</em> @ Indraprastha University, New Delhi
-                    </p>
+        <main>
+            <section class="intro">
+                <div class="intro-text">
+                    <h1>Srihari Raman</h1>
+                    <p>Fullstack engineer building with AI agents and LLMs. Studying Artificial Intelligence &amp; Data Science at Indraprastha University, New Delhi.</p>
+                    <p>I like making things, planespotting, and taking photos.</p>
                 </div>
-
-                <div class="social-links">
-                    <a href="https://github.com/Srihar1-raman" target="_blank" class="social-link">GITHUB</a>
-                    <a href="https://linkedin.com/in/srihari-raman/" target="_blank" class="social-link">LINKEDIN</a>
-                    <a href="https://open.spotify.com/user/gg285lfro18subnopgv9ubbg3" target="_blank" class="social-link">SPOTIFY</a>
-                    <a href="https://twitter.com/srihari-raman" target="_blank" class="social-link">TWITTER</a>
-                    <a href="mailto:srihari22work@gmail.com" target="_blank" class="social-link">EMAIL</a>
+                <div class="intro-photo">
+                    <img src="public/me/me.jpg" alt="Srihari" width="140" height="140">
                 </div>
+            </section>
 
-                <div class="work-section" id="work-section">
-                    <h2 class="work-title">[WORK]</h2>
+            <section class="socials">
+                <a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">github</a>
+                <a href="https://linkedin.com/in/srihari-raman/" target="_blank" rel="noopener">linkedin</a>
+                <a href="https://twitter.com/srihari-raman" target="_blank" rel="noopener">twitter</a>
+                <a href="mailto:srihari22work@gmail.com">email</a>
+            </section>
 
-                    <div class="work-item">
-                        <h3 class="work-item-title">Qurse - AI powered Search Platform</h3>
-                        <p class="work-description">Production ready AI chat app with websearch, research, science agents and with support for multiple AI models.</p>
-                    </div>
-
-                    <div class="work-item">
-                        <h3 class="work-item-title">qopy - Grab Text From Any Screen</h3>
-                        <p class="work-description">macOS app that extracts text from images, videos, or any unselectable area using on-device ML.</p>
-                    </div>
-
-                    <div class="work-item">
-                        <h3 class="work-item-title">Private & Portable architecture for local LLMs</h3>
-                        <p class="work-description">Built a private & portable architecture for running local LLMs with multi OS support.</p>
-                    </div>
-
-                    <div class="work-item">
-                        <h3 class="work-item-title">Twitter Personality Analyser</h3>
-                        <p class="work-description">Built a Twitter user personality analyser using Groq, Tavily and Vercel</p>
-                    </div>
-
-                    <div class="work-item">
-                        <h3 class="work-item-title">Interactive Uber Data Dashboard</h3>
-                        <p class="work-description">Developed a data visualization dashboard using GCP providing insights about Uber cabs.</p>
-                    </div>
-
-                    <div class="work-item">
-                        <h3 class="work-item-title">FLight Tracker</h3>
-                        <p class="work-description">Implemented a real-time flight tracking monitor using Opensky Network API.</p>
-                    </div>
-
-                    <div class="work-item">
-                        <h3 class="work-item-title">Local AI Chat Interfaces: A Privacy-First Architecture for Personal AI Assistance</h3>
-                        <p class="work-description">Research paper for submission to Arxiv.</p>
-                    </div>
-
-                    <div class="work-item">
-                        <h3 class="work-item-title">Stock Price Prediction Using Long Short-Term Memory (LSTM)</h3>
-                        <p class="work-description">Research paper for submission to Preprint.</p>
-                    </div>
-
-                    <div class="work-item">
-                        <h3 class="work-item-title">DeskVR - Hackathon Project</h3>
-                        <p class="work-description">Secured a position in the top 10 out of 500 participating teams. PC‑to‑phone VR platform which allows cross device streaming challenges.</p>
-                    </div>
-
-                    <div class="work-item">
-                        <h3 class="work-item-title">Navonmesh - Technical Magazine</h3>
-                        <p class="work-description">Conceptualized, built, and designed Navonmesh, the annual technical magazine for Computer Science Department.</p>
+            <section class="experience">
+                <h2>Experience</h2>
+                <div class="exp-item">
+                    <span class="exp-date">May – Jun 2026</span>
+                    <div class="exp-detail">
+                        <strong>Velvet Experience</strong> — Full Stack Agentic Engineer Intern
+                        <p>Luxury chauffeur service. Building fullstack product with AI agent integrations.</p>
                     </div>
                 </div>
-
-                <div class="about-section" id="about-section" style="display: none;">
-                    <h2 class="work-title">[ABOUT]</h2>
-                    <p class="bio-text">
-                        I'm passionate about building AI systems that can understand and interact with the world around us. 
-                        My work focuses on creating practical applications that bridge the gap between cutting-edge research 
-                        and real-world usability.
-                    </p>
-                    <p class="bio-text">
-                        When I'm not coding, you'll find me exploring new technologies, reading about AI breakthroughs, 
-                        or capturing moments through photography. I believe in the power of continuous learning and 
-                        sharing knowledge with the community.
-                    </p>
-                </div>
-
-                <div class="inspiration">
-                    <a href="https://michellexliu.me/#/" target="_blank" class="social-link">Portfolio site inspired by Michelle Liu</a>
-                </div>
-            </div>
-            <div class="right-section">
-                <div class="project-details" id="qurse-details">
-                    <div class="project-image">
-                        <img src="public/qurse.png" alt="Qurse - AI powered Search Platform" class="project-screenshot">
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Qurse</h3>
-                        <p class="project-subtitle">AI powered Search Platform</p>
-                        <div class="project-description">
-                            <p>Production-ready AI chat application featuring advanced web search capabilities, specialized research and science agents, with support for multiple AI models including GPT-4, Claude, and Grok.</p>
-                        </div>
-                        <div class="tech-stack">
-                            <h4>Tech Stack:</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">OpenAI API</span>
-                                <span class="tech-tag">Anthropic Claude</span>
-                                <span class="tech-tag">WebSocket</span>
-                                <span class="tech-tag">Vercel</span>
-                            </div>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">View Demo</a>
-                            <a href="https://github.com/Srihar1-raman" target="_blank" class="project-link">Source Code</a>
-                        </div>
+                <div class="exp-item">
+                    <span class="exp-date">Jan – Apr 2026</span>
+                    <div class="exp-detail">
+                        <strong>Early-stage startups</strong> — Fullstack Engineer Intern
+                        <p>Two back-to-back internships at early-stage ventures, shipping product end-to-end.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="vertical-line"></div>
+            </section>
+
+            <section class="projects">
+                <h2>Projects</h2>
+                <ul>
+                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">Qurse</a> — AI-powered search platform with multi-model support</li>
+                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">qopy</a> — macOS app that grabs text from any screen using on-device ML</li>
+                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">Local LLM Architecture</a> — Private &amp; portable system for running local models</li>
+                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">Twitter Personality Analyser</a> — Analyses Twitter user personalities</li>
+                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">Flight Tracker</a> — Real-time flight tracking monitor</li>
+                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">DeskVR</a> — PC-to-phone VR streaming, top 10 out of 500 teams at hackathon</li>
+                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">Navonmesh</a> — Annual technical magazine for CS department</li>
+                </ul>
+            </section>
+        </main>
     </div>
 
-    <script src="script.js?v=2"></script>
+    <script src="script.js"></script>
 </body>
 </html>
