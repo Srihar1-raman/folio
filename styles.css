@@ -58,15 +58,35 @@ nav a:hover {
     background: none;
     border: 1px solid var(--border);
     color: var(--text-secondary);
-    padding: 0.25rem 0.75rem;
+    padding: 0.35rem 0.5rem;
     font-size: 0.75rem;
     cursor: pointer;
     border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
 }
 
 .theme-toggle:hover {
     color: var(--text);
     border-color: var(--text-secondary);
+}
+
+.theme-toggle .icon-sun {
+    display: none;
+}
+
+.theme-toggle .icon-moon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .icon-sun {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .icon-moon {
+    display: none;
 }
 
 .intro {
@@ -146,6 +166,12 @@ h2 {
     font-size: 0.9rem;
 }
 
+.exp-role {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-left: 0.25rem;
+}
+
 .exp-detail p {
     color: var(--text-secondary);
     font-size: 0.85rem;
@@ -174,6 +200,40 @@ h2 {
 
 .projects li a:hover {
     text-decoration: underline;
+}
+
+.project-item {
+    position: relative;
+}
+
+.project-desc {
+    color: var(--text-secondary);
+}
+
+.project-preview {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 0.5rem);
+    width: 240px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 10;
+    border: 1px solid var(--border);
+}
+
+.project-item:hover .project-preview {
+    opacity: 1;
+}
+
+.project-preview img,
+.project-preview video {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .photos-page {
