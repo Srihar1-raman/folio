@@ -120,30 +120,66 @@
 
         // Frame SVGs: idle, walk1, walk2
         var frames = [
-            // idle - sitting
-            '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 16 12" fill="currentColor">' +
-            '<rect x="1" y="0" width="2" height="2"/><rect x="11" y="0" width="2" height="2"/>' +
-            '<rect x="1" y="2" width="12" height="2"/><rect x="0" y="4" width="14" height="4"/>' +
-            '<rect x="2" y="4" width="2" height="2" fill="var(--bg)"/><rect x="9" y="4" width="2" height="2" fill="var(--bg)"/>' +
-            '<rect x="5" y="6" width="4" height="1" fill="var(--bg)"/>' +
-            '<rect x="1" y="8" width="3" height="2"/><rect x="6" y="8" width="3" height="2"/>' +
-            '<rect x="14" y="6" width="2" height="2"/><rect x="14" y="4" width="2" height="1"/></svg>',
-            // walk1 - left legs forward
-            '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 16 12" fill="currentColor">' +
-            '<rect x="1" y="0" width="2" height="2"/><rect x="11" y="0" width="2" height="2"/>' +
-            '<rect x="1" y="2" width="12" height="2"/><rect x="0" y="4" width="14" height="4"/>' +
-            '<rect x="2" y="4" width="2" height="2" fill="var(--bg)"/><rect x="9" y="4" width="2" height="2" fill="var(--bg)"/>' +
-            '<rect x="5" y="6" width="4" height="1" fill="var(--bg)"/>' +
-            '<rect x="0" y="8" width="3" height="2"/><rect x="8" y="8" width="3" height="2"/>' +
-            '<rect x="14" y="5" width="2" height="2"/><rect x="14" y="3" width="2" height="1"/></svg>',
-            // walk2 - right legs forward
-            '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 16 12" fill="currentColor">' +
-            '<rect x="1" y="0" width="2" height="2"/><rect x="11" y="0" width="2" height="2"/>' +
-            '<rect x="1" y="2" width="12" height="2"/><rect x="0" y="4" width="14" height="4"/>' +
-            '<rect x="2" y="4" width="2" height="2" fill="var(--bg)"/><rect x="9" y="4" width="2" height="2" fill="var(--bg)"/>' +
-            '<rect x="5" y="6" width="4" height="1" fill="var(--bg)"/>' +
-            '<rect x="2" y="8" width="3" height="2"/><rect x="5" y="8" width="3" height="2"/>' +
-            '<rect x="14" y="7" width="2" height="2"/><rect x="14" y="5" width="2" height="1"/></svg>'
+            // idle - sitting cat with pointy ears, round head, body, tail, and four legs
+            '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" viewBox="0 0 20 16" fill="currentColor">' +
+            // Ears (triangular)
+            '<rect x="2" y="0" width="1" height="1"/><rect x="6" y="0" width="1" height="1"/>' +
+            '<rect x="2" y="1" width="2" height="1"/><rect x="5" y="1" width="2" height="1"/>' +
+            // Head
+            '<rect x="1" y="2" width="7" height="4"/>' +
+            // Eyes
+            '<rect x="2" y="3" width="1" height="1" fill="var(--bg)"/><rect x="6" y="3" width="1" height="1" fill="var(--bg)"/>' +
+            // Nose
+            '<rect x="4" y="5" width="1" height="1" fill="var(--bg)"/>' +
+            // Body (longer, horizontal)
+            '<rect x="5" y="6" width="10" height="4"/>' +
+            // Tail (curving up from rear)
+            '<rect x="15" y="5" width="1" height="2"/><rect x="16" y="4" width="1" height="2"/><rect x="17" y="3" width="2" height="1"/>' +
+            // Front legs
+            '<rect x="6" y="10" width="2" height="3"/><rect x="9" y="10" width="2" height="3"/>' +
+            // Back legs
+            '<rect x="12" y="10" width="2" height="3"/><rect x="14" y="10" width="2" height="3"/>' +
+            '</svg>',
+            // walk1 - front left and back right forward
+            '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" viewBox="0 0 20 16" fill="currentColor">' +
+            // Ears
+            '<rect x="2" y="0" width="1" height="1"/><rect x="6" y="0" width="1" height="1"/>' +
+            '<rect x="2" y="1" width="2" height="1"/><rect x="5" y="1" width="2" height="1"/>' +
+            // Head
+            '<rect x="1" y="2" width="7" height="4"/>' +
+            // Eyes
+            '<rect x="2" y="3" width="1" height="1" fill="var(--bg)"/><rect x="6" y="3" width="1" height="1" fill="var(--bg)"/>' +
+            // Nose
+            '<rect x="4" y="5" width="1" height="1" fill="var(--bg)"/>' +
+            // Body
+            '<rect x="5" y="6" width="10" height="4"/>' +
+            // Tail (slightly different angle)
+            '<rect x="15" y="4" width="1" height="3"/><rect x="16" y="3" width="1" height="2"/><rect x="17" y="2" width="2" height="1"/>' +
+            // Front legs - left forward, right back
+            '<rect x="5" y="10" width="2" height="3"/><rect x="10" y="10" width="2" height="3"/>' +
+            // Back legs - right forward, left back
+            '<rect x="13" y="10" width="2" height="3"/><rect x="11" y="10" width="2" height="2"/>' +
+            '</svg>',
+            // walk2 - front right and back left forward
+            '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" viewBox="0 0 20 16" fill="currentColor">' +
+            // Ears
+            '<rect x="2" y="0" width="1" height="1"/><rect x="6" y="0" width="1" height="1"/>' +
+            '<rect x="2" y="1" width="2" height="1"/><rect x="5" y="1" width="2" height="1"/>' +
+            // Head
+            '<rect x="1" y="2" width="7" height="4"/>' +
+            // Eyes
+            '<rect x="2" y="3" width="1" height="1" fill="var(--bg)"/><rect x="6" y="3" width="1" height="1" fill="var(--bg)"/>' +
+            // Nose
+            '<rect x="4" y="5" width="1" height="1" fill="var(--bg)"/>' +
+            // Body
+            '<rect x="5" y="6" width="10" height="4"/>' +
+            // Tail (slightly different angle)
+            '<rect x="15" y="6" width="1" height="2"/><rect x="16" y="5" width="1" height="2"/><rect x="17" y="4" width="2" height="1"/>' +
+            // Front legs - right forward, left back
+            '<rect x="7" y="10" width="2" height="3"/><rect x="9" y="10" width="2" height="2"/>' +
+            // Back legs - left forward, right back
+            '<rect x="12" y="10" width="2" height="3"/><rect x="14" y="10" width="2" height="2"/>' +
+            '</svg>'
         ];
 
         cat.innerHTML = frames[0];
