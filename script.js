@@ -187,9 +187,11 @@
 
         var targetX = window.innerWidth / 2;
         var currentX = targetX;
+        var velocity = 0;
         var frameIndex = 0;
         var frameTimer = 0;
         var isMoving = false;
+        var facingDirection = 1;
 
         document.addEventListener("mousemove", function (e) {
             targetX = e.clientX - 16;
@@ -197,18 +199,26 @@
 
         function animate() {
             var dx = targetX - currentX;
-            currentX += dx * 0.08;
 
-            var moving = Math.abs(dx) > 1;
+            // Smooth acceleration and deceleration (gentle easing)
+            velocity += dx * 0.005;
+            velocity *= 0.92; // damping for smooth stop
+            currentX += velocity;
 
-            // Flip cat based on direction
-            var scaleX = dx < -1 ? -1 : 1;
-            cat.style.transform = "translateX(" + currentX + "px) scaleX(" + scaleX + ")";
+            var moving = Math.abs(velocity) > 0.3;
+
+            // Flip cat to face the direction of cursor
+            if (dx > 2) {
+                facingDirection = -1; // face right (SVG head is on left)
+            } else if (dx < -2) {
+                facingDirection = 1; // face left
+            }
+            cat.style.transform = "translateX(" + currentX + "px) scaleX(" + facingDirection + ")";
 
             // Cycle walk frames when moving
             if (moving) {
                 frameTimer++;
-                if (frameTimer % 8 === 0) {
+                if (frameTimer % 12 === 0) {
                     frameIndex = frameIndex === 1 ? 2 : 1;
                     cat.innerHTML = frames[frameIndex];
                 }
