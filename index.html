@@ -19,7 +19,10 @@
                 <a href="index.html" class="nav-active">home</a>
                 <a href="photos.html">photos</a>
             </nav>
-            <button class="theme-toggle" id="theme-toggle">dark</button>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
         </header>
 
         <main>
@@ -44,17 +47,17 @@
             <section class="experience">
                 <h2>Experience</h2>
                 <div class="exp-item">
-                    <span class="exp-date">May – Jun 2026</span>
+                    <span class="exp-date">May - Jun 2026</span>
                     <div class="exp-detail">
-                        <strong>Velvet Experience</strong> — Full Stack Agentic Engineer Intern
-                        <p>Luxury chauffeur service. Building fullstack product with AI agent integrations.</p>
+                        <strong>Velvet Experience</strong> <span class="exp-role">Agentic Fullstack &amp; Product Intern</span>
+                        <p>Premium chauffeur service. First tech hire, building site, apps, backend, and AI integrations from scratch.</p>
                     </div>
                 </div>
                 <div class="exp-item">
-                    <span class="exp-date">Jan – Apr 2026</span>
+                    <span class="exp-date">Mar - Apr 2026</span>
                     <div class="exp-detail">
-                        <strong>Early-stage startups</strong> — Fullstack Engineer Intern
-                        <p>Two back-to-back internships at early-stage ventures, shipping product end-to-end.</p>
+                        <strong>Habio</strong> <span class="exp-role">Fullstack Tech &amp; Product Intern</span>
+                        <p>Quick commerce startup. First tech hire, set up full infrastructure, product design, and system architecture.</p>
                     </div>
                 </div>
             </section>
@@ -62,13 +65,34 @@
             <section class="projects">
                 <h2>Projects</h2>
                 <ul>
-                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">Qurse</a> — AI-powered search platform with multi-model support</li>
-                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">qopy</a> — macOS app that grabs text from any screen using on-device ML</li>
-                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">Local LLM Architecture</a> — Private &amp; portable system for running local models</li>
-                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">Twitter Personality Analyser</a> — Analyses Twitter user personalities</li>
-                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">Flight Tracker</a> — Real-time flight tracking monitor</li>
-                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">DeskVR</a> — PC-to-phone VR streaming, top 10 out of 500 teams at hackathon</li>
-                    <li><a href="https://github.com/Srihar1-raman" target="_blank" rel="noopener">Navonmesh</a> — Annual technical magazine for CS department</li>
+                    <li class="project-item" data-preview="public/qurse.jpg">
+                        <a href="https://github.com/Srihar1-raman/qurse" target="_blank" rel="noopener">Qurse</a>
+                        <span class="project-desc">AI-powered search platform with multi-model support</span>
+                    </li>
+                    <li class="project-item" data-preview="public/qopy.jpg">
+                        <a href="https://github.com/Srihar1-raman/qopy" target="_blank" rel="noopener">qopy</a>
+                        <span class="project-desc">macOS app that grabs text from any screen using on-device ML</span>
+                    </li>
+                    <li class="project-item" data-preview="public/local.jpg">
+                        <a href="https://github.com/Srihar1-raman/local-llm" target="_blank" rel="noopener">Local LLM Architecture</a>
+                        <span class="project-desc">Private &amp; portable system for running local models</span>
+                    </li>
+                    <li class="project-item" data-preview="public/twitter.jpg">
+                        <a href="https://github.com/Srihar1-raman/twitter-personality-analyser" target="_blank" rel="noopener">Twitter Personality Analyser</a>
+                        <span class="project-desc">Analyses Twitter user personalities</span>
+                    </li>
+                    <li class="project-item" data-preview="public/flight.jpg">
+                        <a href="https://github.com/Srihar1-raman/flight-tracker" target="_blank" rel="noopener">Flight Tracker</a>
+                        <span class="project-desc">Real-time flight tracking monitor</span>
+                    </li>
+                    <li class="project-item" data-preview="public/deskVR.mp4">
+                        <a href="https://github.com/Srihar1-raman/DeskVR" target="_blank" rel="noopener">DeskVR</a>
+                        <span class="project-desc">PC-to-phone VR streaming, top 10 out of 500 teams at hackathon</span>
+                    </li>
+                    <li class="project-item" data-preview="public/Navonmesh-page-01.png">
+                        <a href="public/Navonmesh.pdf" target="_blank" rel="noopener">Navonmesh</a>
+                        <span class="project-desc">Annual technical magazine for CS department</span>
+                    </li>
                 </ul>
             </section>
         </main>
