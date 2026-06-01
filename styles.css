@@ -257,17 +257,50 @@ h2 {
     column-gap: 0.75rem;
 }
 
-.gallery img {
-    width: 100%;
+.gallery-item {
+    position: relative;
+    break-inside: avoid;
     margin-bottom: 0.75rem;
+}
+
+.gallery-item img {
+    width: 100%;
     border-radius: 3px;
     display: block;
     opacity: 0;
     transition: opacity 0.3s;
 }
 
-.gallery img.loaded {
+.gallery-item img.loaded {
     opacity: 1;
+}
+
+.gallery-label {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.gallery-item:hover .gallery-label {
+    opacity: 1;
+}
+
+.pixel-cat {
+    position: fixed;
+    bottom: 1rem;
+    left: 0;
+    color: var(--text);
+    pointer-events: none;
+    z-index: 100;
+    transition: color 0.2s;
 }
 
 @media (max-width: 500px) {

@@ -93,12 +93,59 @@
         }, { rootMargin: "200px" });
 
         photos.forEach(function (file) {
+            var wrapper = document.createElement("div");
+            wrapper.className = "gallery-item";
+
             var img = document.createElement("img");
             img.dataset.src = "public/etc/" + file;
-            img.alt = file.replace(/\.[^.]+$/, "");
+            var name = file.replace(/\.[^.]+$/, "");
+            img.alt = name;
             img.loading = "lazy";
-            container.appendChild(img);
+
+            var label = document.createElement("span");
+            label.className = "gallery-label";
+            label.textContent = name;
+
+            wrapper.appendChild(img);
+            wrapper.appendChild(label);
+            container.appendChild(wrapper);
             observer.observe(img);
         });
     }
+
+    // Pixel cat that follows cursor on x-axis
+    function initCat() {
+        var cat = document.createElement("div");
+        cat.className = "pixel-cat";
+        cat.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 16 12" fill="currentColor">' +
+            '<rect x="1" y="0" width="2" height="2"/>' +
+            '<rect x="11" y="0" width="2" height="2"/>' +
+            '<rect x="1" y="2" width="12" height="2"/>' +
+            '<rect x="0" y="4" width="14" height="4"/>' +
+            '<rect x="2" y="4" width="2" height="2" fill="var(--bg)"/>' +
+            '<rect x="9" y="4" width="2" height="2" fill="var(--bg)"/>' +
+            '<rect x="5" y="6" width="4" height="1" fill="var(--bg)"/>' +
+            '<rect x="1" y="8" width="3" height="2"/>' +
+            '<rect x="6" y="8" width="3" height="2"/>' +
+            '<rect x="14" y="6" width="2" height="2"/>' +
+            '<rect x="14" y="4" width="2" height="1"/>' +
+            '</svg>';
+        document.body.appendChild(cat);
+
+        var targetX = window.innerWidth / 2;
+        var currentX = targetX;
+
+        document.addEventListener("mousemove", function (e) {
+            targetX = e.clientX - 16;
+        });
+
+        function animate() {
+            currentX += (targetX - currentX) * 0.08;
+            cat.style.transform = "translateX(" + currentX + "px)";
+            requestAnimationFrame(animate);
+        }
+        animate();
+    }
+
+    initCat();
 })();
