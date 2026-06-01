@@ -113,35 +113,77 @@
         });
     }
 
-    // Pixel cat that follows cursor on x-axis
+    // Pixel cat that follows cursor on x-axis with walk animation
     function initCat() {
         var cat = document.createElement("div");
         cat.className = "pixel-cat";
-        cat.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 16 12" fill="currentColor">' +
-            '<rect x="1" y="0" width="2" height="2"/>' +
-            '<rect x="11" y="0" width="2" height="2"/>' +
-            '<rect x="1" y="2" width="12" height="2"/>' +
-            '<rect x="0" y="4" width="14" height="4"/>' +
-            '<rect x="2" y="4" width="2" height="2" fill="var(--bg)"/>' +
-            '<rect x="9" y="4" width="2" height="2" fill="var(--bg)"/>' +
+
+        // Frame SVGs: idle, walk1, walk2
+        var frames = [
+            // idle - sitting
+            '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 16 12" fill="currentColor">' +
+            '<rect x="1" y="0" width="2" height="2"/><rect x="11" y="0" width="2" height="2"/>' +
+            '<rect x="1" y="2" width="12" height="2"/><rect x="0" y="4" width="14" height="4"/>' +
+            '<rect x="2" y="4" width="2" height="2" fill="var(--bg)"/><rect x="9" y="4" width="2" height="2" fill="var(--bg)"/>' +
             '<rect x="5" y="6" width="4" height="1" fill="var(--bg)"/>' +
-            '<rect x="1" y="8" width="3" height="2"/>' +
-            '<rect x="6" y="8" width="3" height="2"/>' +
-            '<rect x="14" y="6" width="2" height="2"/>' +
-            '<rect x="14" y="4" width="2" height="1"/>' +
-            '</svg>';
+            '<rect x="1" y="8" width="3" height="2"/><rect x="6" y="8" width="3" height="2"/>' +
+            '<rect x="14" y="6" width="2" height="2"/><rect x="14" y="4" width="2" height="1"/></svg>',
+            // walk1 - left legs forward
+            '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 16 12" fill="currentColor">' +
+            '<rect x="1" y="0" width="2" height="2"/><rect x="11" y="0" width="2" height="2"/>' +
+            '<rect x="1" y="2" width="12" height="2"/><rect x="0" y="4" width="14" height="4"/>' +
+            '<rect x="2" y="4" width="2" height="2" fill="var(--bg)"/><rect x="9" y="4" width="2" height="2" fill="var(--bg)"/>' +
+            '<rect x="5" y="6" width="4" height="1" fill="var(--bg)"/>' +
+            '<rect x="0" y="8" width="3" height="2"/><rect x="8" y="8" width="3" height="2"/>' +
+            '<rect x="14" y="5" width="2" height="2"/><rect x="14" y="3" width="2" height="1"/></svg>',
+            // walk2 - right legs forward
+            '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 16 12" fill="currentColor">' +
+            '<rect x="1" y="0" width="2" height="2"/><rect x="11" y="0" width="2" height="2"/>' +
+            '<rect x="1" y="2" width="12" height="2"/><rect x="0" y="4" width="14" height="4"/>' +
+            '<rect x="2" y="4" width="2" height="2" fill="var(--bg)"/><rect x="9" y="4" width="2" height="2" fill="var(--bg)"/>' +
+            '<rect x="5" y="6" width="4" height="1" fill="var(--bg)"/>' +
+            '<rect x="2" y="8" width="3" height="2"/><rect x="5" y="8" width="3" height="2"/>' +
+            '<rect x="14" y="7" width="2" height="2"/><rect x="14" y="5" width="2" height="1"/></svg>'
+        ];
+
+        cat.innerHTML = frames[0];
         document.body.appendChild(cat);
 
         var targetX = window.innerWidth / 2;
         var currentX = targetX;
+        var frameIndex = 0;
+        var frameTimer = 0;
+        var isMoving = false;
 
         document.addEventListener("mousemove", function (e) {
             targetX = e.clientX - 16;
         });
 
         function animate() {
-            currentX += (targetX - currentX) * 0.08;
-            cat.style.transform = "translateX(" + currentX + "px)";
+            var dx = targetX - currentX;
+            currentX += dx * 0.08;
+
+            var moving = Math.abs(dx) > 1;
+
+            // Flip cat based on direction
+            var scaleX = dx < -1 ? -1 : 1;
+            cat.style.transform = "translateX(" + currentX + "px) scaleX(" + scaleX + ")";
+
+            // Cycle walk frames when moving
+            if (moving) {
+                frameTimer++;
+                if (frameTimer % 8 === 0) {
+                    frameIndex = frameIndex === 1 ? 2 : 1;
+                    cat.innerHTML = frames[frameIndex];
+                }
+                isMoving = true;
+            } else if (isMoving) {
+                // Return to idle
+                cat.innerHTML = frames[0];
+                isMoving = false;
+                frameTimer = 0;
+            }
+
             requestAnimationFrame(animate);
         }
         animate();
